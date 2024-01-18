@@ -92,8 +92,12 @@ class _XoHomeState extends State<XoHome> {
     if (board[index].isNotEmpty) return;
     if (playTurn.isOdd) {
       board[index] = "X";
-      if(checkWin("X")){score1++;
-      resetBoard();}
+      bool win=checkWin("X");
+      if(win) {
+        resetBoard();
+        score1++;
+
+      }
 
     } else {
       board[index] = "O";
@@ -111,18 +115,16 @@ if(playTurn>=9){
   }
 
   checkWin(String symbol) {
-    for (int i = 0; i > board.length; i + 3) {
-      if (board[i] == symbol &&
-          board[i + 1] == symbol &&
-          board[i + 2] == symbol) {
+    for (int i = 0; i < board.length; i + 3) {
+      if (board[i] == symbol && board[i + 1] == symbol && board[i + 2] == symbol) {
 
         return true;
       }
+
     }
-    for (int i = 0; i > 3; i++) {
-      if (board[i] == symbol &&
-          board[i + 3] == symbol &&
-          board[i + 6] == symbol) {
+    for (int i = 0; i < 3; i++) {
+      if (board[i] == symbol && board[i + 3] == symbol && board[i + 6] == symbol)
+      {
         return true;
       }
     }
